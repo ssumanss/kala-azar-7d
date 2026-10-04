@@ -16,9 +16,9 @@ Open-access replication codebase, formal interactive theorem proving scripts in 
 
 ## Repository Overview
 
-This repository provides full end-to-end reproducibility for the double-latency (SEIR$_H$--SEI$_V$) visceral leishmaniasis transmission model, including:
+This repository provides full end-to-end reproducibility for the double-latency host-vector (SEIR-SEI) visceral leishmaniasis transmission model, including:
 1. **Calibrated Parameters**: Empirical North Bihar epidemiological parameters for host and sandfly compartments.
-2. **Spectral Analysis**: Next-Generation Matrix derivation and square-root incubation survival law linking $\mathcal{R}_0$ to sandfly EIP survival probability $P_{\mathrm{surv}}$.
+2. **Spectral Analysis**: Next-Generation Matrix derivation and square-root incubation survival law linking the basic reproduction number to sandfly EIP survival probability.
 3. **Formal Verification in Lean 4**: Zero-axiom machine-checked proofs of Lyapunov derivative bounds and positive definiteness.
 4. **Numerical Simulation**: 7D ODE integration, time-series convergence, phase-space trajectories, and threshold sweeps.
 5. **Automated Testing**: 100% passing pytest regression suite verifying invariance and derivative non-positivity.
