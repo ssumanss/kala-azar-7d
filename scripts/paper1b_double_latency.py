@@ -4,7 +4,7 @@ paper1b_double_latency.py
 Simulation, spectral analysis, parameter serialization, and Lyapunov verification for the
 7-dimensional SEI_H R - SEI_V Kala-azar model.
 Dedicated Open Science Replication Package for:
-"Double Latency and Topological Stability in Kala-azar Dynamics" (Applied Mathematics Letters).
+"Double Latency and Global Stability in Kala-azar Dynamics" (Applied Mathematics Letters).
 """
 
 from pathlib import Path

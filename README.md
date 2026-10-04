@@ -7,7 +7,7 @@
 
 Open-access replication codebase, formal interactive theorem proving scripts in Lean 4, and epidemiological datasets accompanying the research letter:
 
-> **"Double Latency and Topological Stability in Kala-azar Dynamics"**  
+> **"Double Latency and Global Stability in Kala-azar Dynamics"**  
 > *Raj Kumar Raj and Sandeep Suman*  
 > University Department of Mathematics, Tilka Manjhi Bhagalpur University, Bhagalpur 812007, Bihar, India.  
 > *Applied Mathematics Letters (Elsevier), Submitted (2026).*
@@ -50,7 +50,8 @@ kala-azar-7d/
 
 The 7-dimensional compartmental ODE system models transmission between human hosts ($S_H, E_H, I_H, R_H$) and phlebotomine sandfly vectors ($S_V, E_V, I_V$):
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 \dot{S}_H &= \Lambda_H - a b_H \frac{I_V}{N_H} S_H - d_H S_H + \gamma R_H, \\
 \dot{E}_H &= a b_H \frac{I_V}{N_H} S_H - (\sigma_H + d_H) E_H, \\
 \dot{I}_H &= \sigma_H E_H - (\delta_H + d_H + r_H) I_H, \\
@@ -58,33 +59,67 @@ $$\begin{aligned}
 \dot{S}_V &= \Lambda_V - a b_V \frac{I_H}{N_H} S_V - d_V S_V, \\
 \dot{E}_V &= a b_V \frac{I_H}{N_H} S_V - (\sigma_V + d_V) E_V, \\
 \dot{I}_V &= \sigma_V E_V - d_V I_V.
-\end{aligned}$$
+\end{aligned}
+$$
 
 The biologically feasible compact invariant region is:
-$$\Omega_{7D} = \left\{ (S_H, E_H, I_H, R_H, S_V, E_V, I_V) \in \mathbb{R}_{\ge 0}^7 : N_H \le N_H^* = \frac{\Lambda_H}{d_H},\; N_V \le S_V^* = \frac{\Lambda_V}{d_V} \right\}.$$
+
+$$
+\Omega_{7D} = \left\lbrace (S_H, E_H, I_H, R_H, S_V, E_V, I_V) \in \mathbb{R}_{\ge 0}^7 : N_H \le N_H^\ast = \frac{\Lambda_H}{d_H},\; N_V \le S_V^\ast = \frac{\Lambda_V}{d_V} \right\rbrace.
+$$
 
 ---
 
 ## Core Theoretical Results
 
 ### 1. Square-Root Incubation Survival Law (Proposition 1)
+
 Using the $4 \times 4$ Next-Generation Matrix (NGM) operator $\mathcal{F} \mathcal{V}^{-1}$, the basic reproduction number factors as:
 
-$$\mathcal{R}_{0} = \mathcal{R}_{0}^{\text{ideal}} \sqrt{\frac{\sigma_V}{\sigma_V + d_V}} = \mathcal{R}_{0}^{\text{ideal}} \sqrt{P_{\text{surv}}},$$
+$$
+\mathcal{R}_{0} = \mathcal{R}_{0}^{\text{ideal}} \sqrt{\frac{\sigma_V}{\sigma_V + d_V}} = \mathcal{R}_{0}^{\text{ideal}} \sqrt{P_{\text{surv}}},
+$$
 
-where $\mathcal{R}_{0}^{\text{ideal}} = a \sqrt{\frac{b_H b_V \Lambda_V \sigma_H}{N_H^* d_V^2 (\sigma_H + d_H) k_H}}$ represents the theoretical upper limit under instantaneous vector incubation ($\sigma_V \to \infty$), and $P_{\text{surv}} = \frac{\sigma_V}{\sigma_V + d_V}$ represents the probability that an infected sandfly survives the extrinsic incubation period (EIP). For North Bihar baseline parameters ($\sigma_V = 1/7\ \text{d}^{-1}$, $d_V = 0.07\ \text{d}^{-1}$):
-$$\sqrt{P_{\text{surv}}} = \sqrt{\frac{0.1429}{0.1429 + 0.07}} \approx 0.8192 \implies 18.08\% \text{ reduction in } \mathcal{R}_0 \text{ relative to } \mathcal{R}_{0}^{\text{ideal}}.$$
+where the benchmark under instantaneous vector incubation ($\sigma_V \to \infty$) is:
+
+$$
+\mathcal{R}_{0}^{\text{ideal}} = a \sqrt{\frac{b_H b_V \Lambda_V \sigma_H}{N_H^\ast d_V^2 (\sigma_H + d_H) k_H}},
+$$
+
+and $P_{\text{surv}} = \frac{\sigma_V}{\sigma_V + d_V}$ represents the probability that an infected sandfly survives the extrinsic incubation period (EIP).
+
+For North Bihar baseline parameters ($\sigma_V = 1/7\ \text{d}^{-1}$, $d_V = 0.07\ \text{d}^{-1}$):
+
+$$
+\sqrt{P_{\text{surv}}} = \sqrt{\frac{0.1429}{0.1429 + 0.07}} \approx 0.8192 \implies 18.08\% \text{ reduction in } \mathcal{R}_0 \text{ relative to } \mathcal{R}_{0}^{\text{ideal}}.
+$$
 
 ### 2. Global Asymptotic Stability of DFE (Theorem 1)
+
 Consider the 4-term linear Lyapunov function with state-dependent weights:
-$$V(\mathbf{x}) = E_H + \frac{\sigma_H + d_H}{\sigma_H} I_H + c_3 E_V + \frac{a b_H}{d_V} I_V,$$
-where $c_3 = \frac{(\sigma_H + d_H) k_H N_H^*}{\sigma_H a b_V S_V^*}$ and $k_H = \delta_H + d_H + r_H$.
+
+$$
+V(\mathbf{x}) = E_H + \frac{\sigma_H + d_H}{\sigma_H} I_H + c_3 E_V + \frac{a b_H}{d_V} I_V,
+$$
+
+where:
+
+$$
+c_3 = \frac{(\sigma_H + d_H) k_H N_H^\ast}{\sigma_H a b_V S_V^\ast}, \qquad k_H = \delta_H + d_H + r_H.
+$$
 
 The exact Lie derivative on $\Omega_{7D}$ satisfies:
-$$\dot{V}(\mathbf{x}) = a b_H \left( \frac{S_H}{N_H^*} - 1 \right) I_V + \frac{(\sigma_H + d_H) k_H}{\sigma_H} \left( \frac{S_V}{S_V^*} - 1 \right) I_H + c_3 (\sigma_V + d_V) (\mathcal{R}_{0,7D}^2 - 1) E_V \le 0.$$
 
-At the critical boundary $\mathcal{R}_{0,7D} = 1$, any candidate invariant orbit with $I_H > 0$ requires $S_V \equiv S_V^* \implies \dot{S}_V \equiv 0$, but evaluating the vector field yields:
-$$\dot{S}_V = -a b_V \frac{I_H}{N_H^*} S_V^* < 0,$$
+$$
+\dot{V}(\mathbf{x}) = a b_H \left( \frac{S_H}{N_H^\ast} - 1 \right) I_V + \frac{(\sigma_H + d_H) k_H}{\sigma_H} \left( \frac{S_V}{S_V^\ast} - 1 \right) I_H + c_3 (\sigma_V + d_V) (\mathcal{R}_{0,7D}^2 - 1) E_V \le 0.
+$$
+
+At the critical boundary $\mathcal{R}_{0,7D} = 1$, any candidate invariant orbit with $I_H > 0$ requires $S_V \equiv S_V^\ast \implies \dot{S}_V \equiv 0$, but evaluating the vector field yields:
+
+$$
+\dot{S}_V = -a b_V \frac{I_H}{N_H^\ast} S_V^\ast < 0,
+$$
+
 a strict contradiction. Hence, by LaSalle's Invariance Principle, the disease-free equilibrium $E_0$ is globally asymptotically stable on $\Omega_{7D}$ for all $\mathcal{R}_{0,7D} \le 1$.
 
 ---
@@ -93,7 +128,7 @@ a strict contradiction. Hence, by LaSalle's Invariance Principle, the disease-fr
 
 | Parameter | Description | Baseline Value | Biological Source |
 |---|---|---|---|
-| $\Lambda_H$ | Human daily recruitment | $0.55\ \text{day}^{-1}$ | Balances $d_H N_H^*$ ($N_H^* = 10^4$) |
+| $\Lambda_H$ | Human daily recruitment | $0.55\ \text{day}^{-1}$ | Balances $d_H N_H^\ast$ ($N_H^\ast = 10^4$) |
 | $d_H$ | Natural human mortality | $5.5 \times 10^{-5}\ \text{day}^{-1}$ | $\approx 50$-year lifespan |
 | $\delta_H$ | VL-induced human mortality | $1.0 \times 10^{-3}\ \text{day}^{-1}$ | Untreated visceral leishmaniasis |
 | $r_H$ | Human clinical recovery | $0.02\ \text{day}^{-1}$ | $\approx 50$-day treatment course |
@@ -150,7 +185,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ```bibtex
 @article{raj2026doublelatency,
-  title   = {Double Latency and Topological Stability in Kala-azar Dynamics},
+  title   = {Double Latency and Global Stability in Kala-azar Dynamics},
   author  = {Raj, Raj Kumar and Suman, Sandeep},
   journal = {Applied Mathematics Letters},
   year    = {2026},

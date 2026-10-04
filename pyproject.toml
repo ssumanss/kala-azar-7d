@@ -1,7 +1,7 @@
 [project]
 name = "kala-azar-7d"
 version = "1.0.0"
-description = "Replication package and formal Lean 4 verification proofs for: Double Latency and Topological Stability in Kala-azar Dynamics (Applied Mathematics Letters)"
+description = "Replication package and formal Lean 4 verification proofs for: Double Latency and Global Stability in Kala-azar Dynamics (Applied Mathematics Letters)"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [

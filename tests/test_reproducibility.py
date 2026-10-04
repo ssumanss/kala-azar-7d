@@ -2,7 +2,7 @@
 test_reproducibility.py
 =======================
 Automated reproducibility and mathematical invariance tests for:
-"Double Latency and Topological Stability in Kala-azar Dynamics" (Applied Mathematics Letters).
+"Double Latency and Global Stability in Kala-azar Dynamics" (Applied Mathematics Letters).
 """
 
 from pathlib import Path
